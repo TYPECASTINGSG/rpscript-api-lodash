@@ -7,17 +7,17 @@ import _ from 'lodash';
 @RpsModule("lodash")
 export default class RpsLodash {
 
-  @rpsAction({defaultName:'map'})
+  @rpsAction({verbName:'map'})
   map (ctx:RpsContext,opts:{}, functor:any[], fn:Function) : Promise<any[]> {
     return Promise.resolve(_.map(functor,fn));
   }
   
-  @rpsAction({defaultName:'filter'})
+  @rpsAction({verbName:'filter'})
   filter (ctx:RpsContext,opts:{}, functor:any[], fn:any) : Promise<any[]> {
     return Promise.resolve(_.filter(functor,fn));
   }
   
-  @rpsAction({defaultName:'forEach'})
+  @rpsAction({verbName:'forEach'})
   async forEach (ctx:RpsContext, opts:{}, functor:any[], fn:Function) : Promise<void> {
     for(var i =0;i<functor.length;i++){
       let item = functor[i];
