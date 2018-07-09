@@ -28,4 +28,16 @@ m.describe('Lodash', () => {
     c.expect(result).to.have.same.members([2,4]);
   });
 
+  m.it('should get keys', async function() {
+    let result = await lodash.keys($CONTEXT,{},{a:1,b:2});
+
+    c.expect(result).to.have.same.members(['a','b']);
+  });
+
+  m.it('should get values', async function() {
+    let result = await lodash.values($CONTEXT,{},{a:1,b:2});
+
+    c.expect(result).to.have.same.members([1,2]);
+  });
+
 })

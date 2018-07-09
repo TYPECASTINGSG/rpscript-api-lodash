@@ -16,6 +16,15 @@ export default class RpsLodash {
   filter (ctx:RpsContext,opts:{}, functor:any[], fn:any) : Promise<any[]> {
     return Promise.resolve(_.filter(functor,fn));
   }
+
+  @rpsAction({verbName:'keys'})
+  keys (ctx:RpsContext,opts:{}, functor:Object, fn:any) : Promise<any[]> {
+    return Promise.resolve(_.keys(functor));
+  }
+  @rpsAction({verbName:'values'})
+  values (ctx:RpsContext,opts:{}, functor:Object, fn:any) : Promise<any[]> {
+    return Promise.resolve(_.values(functor));
+  }
   
   @rpsAction({verbName:'forEach'})
   async forEach (ctx:RpsContext, opts:{}, functor:any[], fn:Function) : Promise<void> {
