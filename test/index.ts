@@ -28,6 +28,17 @@ m.describe('Lodash', () => {
     c.expect(result).to.have.same.members([2,4]);
   });
 
+  m.it('should find value', async function() {
+    let result:Object = await lodash.find($CONTEXT,{},[
+      { 'user': 'barney',  'age': 36, 'active': true },
+      { 'user': 'fred',    'age': 40, 'active': false },
+      { 'user': 'pebbles', 'age': 1,  'active': true }
+    ],['active', false]);
+
+
+    c.expect(result).to.be.deep.equals({'user':'fred','age':40,'active':false});
+  });
+
   m.it('should get keys', async function() {
     let result = await lodash.keys($CONTEXT,{},{a:1,b:2});
 
