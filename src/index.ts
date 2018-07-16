@@ -1,9 +1,9 @@
-/**
- * @module Lodash
- */
 import {RpsContext,RpsModule,rpsAction} from 'rpscript-interface';
 import _ from 'lodash';
 
+/** Module for Lodash
+ * @namespace Lodash 
+*/
 @RpsModule("lodash")
 export default class RpsLodash {
 
