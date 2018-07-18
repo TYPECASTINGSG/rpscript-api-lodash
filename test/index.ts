@@ -59,4 +59,14 @@ m.describe('Lodash', () => {
     c.expect(result).to.have.same.members([1,2]);
   });
 
+  m.it('should get lodash function add', async function() {
+    let result = await lodash.getLodashFunction($CONTEXT,{},'add');
+
+    c.expect(result(1,2)).to.be.equals(3);
+
+    result = await lodash.lodashOpt($CONTEXT,{},'add',4,5);
+
+    c.expect(result).to.be.equals(9);
+  });
+
 })

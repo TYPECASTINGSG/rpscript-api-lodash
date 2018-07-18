@@ -637,8 +637,14 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
 
 
   @rpsAction({verbName:'lodash-function'})
-  getLodashFunction(ctx,RpsContext,opts:{},fnName:string) : Promise<Function> {
+  getLodashFunction(ctx:RpsContext,opts:{},fnName:string) : Promise<Function> {
     return Promise.resolve(_[fnName]);
+  }
+
+  @rpsAction({verbName:'lodash'})
+  lodashOpt(ctx:RpsContext,opts:{},fnName:string,...values:any[]) : Promise<any> {
+    let fn = _[fnName];
+    return Promise.resolve(fn.apply(this,values));
   }
 }
 
