@@ -1,6 +1,7 @@
 import {RpsContext,RpsModule,rpsAction} from 'rpscript-interface';
 import _ from 'lodash';
-
+import async from "async";
+import fs from 'fs';
 /** Module for Lodash
  * @namespace Lodash 
  * 
@@ -595,12 +596,26 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
 
   @rpsAction({verbName:'map'})
   map (ctx:RpsContext,opts:{}, functor:any[], fn:Function) : Promise<any[]> {
-    return Promise.resolve( Promise.all(_.map(functor,fn)) );
+    var func = async (val, cb) => cb(null,await fn(val));
+  
+    return new Promise((resolve,reject)=> {
+      async.mapSeries(functor,func, (err, results) => {
+        if (err) reject(err);
+        else resolve(results);
+      });
+    });
   }
   
   @rpsAction({verbName:'filter'})
   filter (ctx:RpsContext,opts:{}, functor:any[], fn:any) : Promise<any[]> {
-    return Promise.resolve( _.filter(functor,fn));
+    var func = async (val, cb) => cb(null,await fn(val));
+  
+    return new Promise((resolve,reject)=> {
+      async.filterSeries(functor,func, (err, results) => {
+        if (err) reject(err);
+        else resolve(results);
+      });
+    });
   }
 
   @rpsAction({verbName:'find'})

@@ -20,7 +20,7 @@ m.describe('Lodash', () => {
     let p = Promise.resolve(2);
     let result = await lodash.map($CONTEXT,{},inputs, async function (input) {
       let output = await p;
-      return input * output;
+      return input * 2;
     });
 
     c.expect(result).to.have.same.members([2,4,6,8]);
@@ -29,7 +29,6 @@ m.describe('Lodash', () => {
   m.it('should filter item', async function() {
     let result = await lodash.filter($CONTEXT,{},inputs, async function(n) {
       let output = await n % 2 === 0;
-      console.log(output);
       return output;
     });
 
