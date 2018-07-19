@@ -20,7 +20,7 @@ m.describe('Lodash', () => {
     let p = Promise.resolve(2);
     let result = await lodash.map($CONTEXT,{},inputs, async function (input) {
       let output = await p;
-      return input * 2;
+      return input * output;
     });
 
     c.expect(result).to.have.same.members([2,4,6,8]);
@@ -60,12 +60,10 @@ m.describe('Lodash', () => {
 
   m.it('should get lodash function add', async function() {
     let result = await lodash.getLodashFunction($CONTEXT,{},'add');
-
     c.expect(result(1,2)).to.be.equals(3);
 
-    result = await lodash.lodashOpt($CONTEXT,{},'add',4,5);
-
-    c.expect(result).to.be.equals(9);
+    result = await lodash.getLodashFunction($CONTEXT,{},'add',6,9);
+    c.expect(result).to.be.equals(15);
   });
 
 })
