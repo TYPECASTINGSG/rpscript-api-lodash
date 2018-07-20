@@ -1,5 +1,5 @@
 import {RpsContext,RpsModule,rpsAction} from 'rpscript-interface';
-import _ from 'lodash';
+import _, { TemplateExecutor } from 'lodash';
 import async from "async";
 import fs from 'fs';
 /** Module for Lodash
@@ -650,6 +650,140 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
     return Promise.resolve(new Date(_.now()));
   }
 
+  // ******** STRING *******
+  @rpsAction({verbName:'camel-case'})
+  camelCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.camelCase(text));
+  }
+  @rpsAction({verbName:'capitalize'})
+  capitalize (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.capitalize(text));
+  }
+  @rpsAction({verbName:'deburr'})
+  deburr (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.deburr(text));
+  }
+  @rpsAction({verbName:'ends-with'})
+  endsWith (ctx:RpsContext,opts:Object, target:string,text:string) : Promise<boolean> {
+    let position = opts['position'];
+    return Promise.resolve(_.endsWith(text,target,position));
+  }
+  @rpsAction({verbName:'escape'})
+  escape (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.escape(text));
+  }
+  @rpsAction({verbName:'escape-regexp'})
+  escapeRegExp (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.escapeRegExp(text));
+  }
+  @rpsAction({verbName:'kebab-case'})
+  kebabCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.kebabCase(text));
+  }
+  @rpsAction({verbName:'lower-case'})
+  lowerCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.lowerCase(text));
+  }
+  @rpsAction({verbName:'lower-first'})
+  lowerFirst (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.lowerFirst(text));
+  }
+  @rpsAction({verbName:'pad'})
+  pad (ctx:RpsContext,opts:Object, length:number,text:string ) : Promise<string> {
+    let chars = opts['chars'];
+    return Promise.resolve(_.pad(text,length,chars));
+  }
+  @rpsAction({verbName:'pad-end'})
+  padEnd (ctx:RpsContext,opts:Object, length:number,text:string) : Promise<string> {
+    let chars = opts['chars'];
+    return Promise.resolve(_.padEnd(text,length,chars));
+  }
+  @rpsAction({verbName:'pad-start'})
+  padStart (ctx:RpsContext,opts:Object,length:number,text:string) : Promise<string> {
+    let chars = opts['chars'];
+    return Promise.resolve(_.padStart(text,length,chars));
+  }
+  @rpsAction({verbName:'parse-int'})
+  parseInt (ctx:RpsContext,opts:Object, text:string) : Promise<number> {
+    let radix = opts['radix'];
+    return Promise.resolve(_.parseInt(text,radix));
+  }
+  @rpsAction({verbName:'repeat'})
+  repeat (ctx:RpsContext,opts:{},n:number,text:string ) : Promise<string> {
+    return Promise.resolve(_.repeat(text,n));
+  }
+  @rpsAction({verbName:'replace'})
+  replace (ctx:RpsContext,opts:{}, pattern:string|RegExp, replacement:string,text:string) : Promise<string> {
+    return Promise.resolve(_.replace(text,pattern,replacement));
+  }
+  @rpsAction({verbName:'snake-case'})
+  snakeCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.snakeCase(text));
+  }
+  @rpsAction({verbName:'split'})
+  split (ctx:RpsContext,opts:{},text:string) : Promise<string[]> {
+    return Promise.resolve(_.split(text));
+  }
+  @rpsAction({verbName:'start-case'})
+  startCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.startCase(text));
+  }
+  @rpsAction({verbName:'starts-with'})
+  startsWith (ctx:RpsContext,opts:Object,target:string,text:string) : Promise<boolean> {
+    let position = opts['position'];
+    return Promise.resolve(_.startsWith(text,target,position));
+  }
+  @rpsAction({verbName:'template'})
+  template (ctx:RpsContext,opts:Object,text:string) : Promise<TemplateExecutor> {
+    return Promise.resolve(_.template(text,opts));
+  }
+  @rpsAction({verbName:'to-lower'})
+  toLower (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    return Promise.resolve(_.toLower(text));
+  }
+  @rpsAction({verbName:'to-upper'})
+  toUpper (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    return Promise.resolve(_.toUpper(text));
+  }
+  @rpsAction({verbName:'trim'})
+  trim (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    let chars:string = opts['chars'];
+    return Promise.resolve(_.trim(text,chars));
+  }
+  @rpsAction({verbName:'trim-end'})
+  trimEnd (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    let chars:string = opts['chars'];
+    return Promise.resolve(_.trimEnd(text,chars));
+  }
+  @rpsAction({verbName:'trim-start'})
+  trimStart (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    let chars:string = opts['chars'];
+    return Promise.resolve(_.trimStart(text,chars));
+  }
+  @rpsAction({verbName:'truncate'})
+  truncate (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    return Promise.resolve(_.truncate(text,opts));
+  }
+  @rpsAction({verbName:'unescape'})
+  unescape (ctx:RpsContext,opts:Object,text:string) : Promise<string> {
+    return Promise.resolve(_.unescape(text));
+  }
+  @rpsAction({verbName:'upper-case'})
+  upperCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.upperCase(text));
+  }
+  @rpsAction({verbName:'upper-first'})
+  upperFirst (ctx:RpsContext,opts:{},text:string) : Promise<string> {
+    return Promise.resolve(_.upperFirst(text));
+  }
+  @rpsAction({verbName:'words'})
+  words (ctx:RpsContext,opts:{},pattern:string,text:string) : Promise<string[]> {
+    return Promise.resolve(_.words(text,pattern));
+  }
+
+
+  // ******** CUSTOMIZE *******
+
 
   @rpsAction({verbName:'lodash'})
   getLodashFunction(ctx:RpsContext,opts:{},fnName:string, ...params:any[]) : Promise<any> {
@@ -657,10 +791,5 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
     else return _[fnName].apply(this,params);
   }
 
-  // @rpsAction({verbName:'lodash'})
-  // lodashOpt(ctx:RpsContext,opts:{},fnName:string,...values:any[]) : Promise<any> {
-  //   let fn = _[fnName];
-  //   return Promise.resolve(fn.apply(this,values));
-  // }
 }
 

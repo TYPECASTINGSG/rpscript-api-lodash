@@ -66,4 +66,9 @@ m.describe('Lodash', () => {
     c.expect(result).to.be.equals(15);
   });
 
+  m.it('should verify string opts', async function() {
+    let result = await lodash.upperCase($CONTEXT,{},'hello world');
+    c.expect(result).to.be.equals('HELLO WORLD');
+  });
+
 })
