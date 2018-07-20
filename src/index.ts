@@ -721,8 +721,8 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
     return Promise.resolve(_.snakeCase(text));
   }
   @rpsAction({verbName:'split'})
-  split (ctx:RpsContext,opts:{},text:string) : Promise<string[]> {
-    return Promise.resolve(_.split(text));
+  split (ctx:RpsContext,opts:{},separator:string|RegExp, text:string) : Promise<string[]> {
+    return Promise.resolve(_.split(text,separator));
   }
   @rpsAction({verbName:'start-case'})
   startCase (ctx:RpsContext,opts:{},text:string) : Promise<string> {
@@ -784,6 +784,10 @@ zipWith (ctx:RpsContext,opts:{}, identity:Function, ...arrays:any[]) : Promise<a
 
   // ******** CUSTOMIZE *******
 
+  @rpsAction({verbName:'regex'})
+  regex (ctx:RpsContext,opts:{},pattern:string,flags?:string) : Promise<RegExp> {
+    return Promise.resolve(new RegExp(pattern,flags));
+  }
 
   @rpsAction({verbName:'lodash'})
   getLodashFunction(ctx:RpsContext,opts:{},fnName:string, ...params:any[]) : Promise<any> {
